@@ -1,0 +1,649 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="tab-title">Make24</title>
+  <link rel="shortcut icon" type="ico" href="favicon.ico">
+  <script src="script.js"></script>
+</head>
+
+<style>
+
+:root {
+  --gold: #ffc728;
+  --grau: #aaaaaa;
+  --schatten: rgba(0, 0, 0, 0.7);
+  --kirschen: #E84A5F;
+  --metalblau: #3C5377;
+  --seegrün: #4caf50;
+
+  --background-color: #314453;
+  --darker-background-color: #243848;
+  --accent-color: #617484;
+  --text-color: #FFFFFF;
+  --navbar-height: 80px;
+}
+
+nav{
+  height: var(--navbar-height);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  margin-left: 30px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.back {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+  padding: 32px;
+}
+
+.title:hover {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+
+p#currentP{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 150%;
+}
+p.reload {
+  font-family: 'IBM Plex Mono', monospace;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+
+  text-align: center;
+
+  height: 98vh;
+  width: 99vw;
+
+
+  color:antiquewhite;
+
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--metalblau);
+  justify-content: center;
+  align-items: center;
+
+
+
+    background-image: linear-gradient(-45deg, #314453, #617484, #a6c3cb, #E89B26); 
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@keyframes gradient {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+/*Background ^*/
+
+h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  display: inline-block;
+  padding: 10px;
+}
+
+/* Text-Wavy */
+
+.wavy_0 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_1 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 0.5s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_2 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 1s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_3 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 1.5s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.top {
+
+    position: fixed;
+
+    overflow:visible;
+    top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: xx-large;
+  }
+
+
+  .bottom {
+    font-family: 'IBM Plex Mono', monospace;
+    position: fixed;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+
+    .stacker {
+      display:inline-flex;
+
+  
+      margin-bottom: 65px;
+
+      border-radius: 10px;
+      border:1px solid var(--grau);
+      border-style: dashed;
+      justify-content: center;
+      align-items: center;
+  
+      max-width: 140px;
+      max-height: 210px;
+  
+      width: 140px;
+      height: 210px;
+
+      min-width: 140px;
+      min-height: 210px;
+      
+      overflow: visible;
+      text-align: center;
+      vertical-align: middle;
+      font-size: xx-large;
+
+      font-family: 'IBM Plex Mono', monospace;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      }
+
+  .twofour {
+    display:inline-block;
+    top: 0;
+    left: 10px;
+    width: 140px;
+    height: 210px;
+    border-radius: 10px;
+    overflow: visible;
+
+    background: var(--seegrün);
+    color: antiquewhite;
+    box-shadow: 10px 10px var(--schatten);
+    
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 240px;
+
+    margin-right: 0px;
+
+    font-size: xx-large;
+    }
+
+    .mSymbol{
+      font-size: 30px;
+      margin: 15px;
+      margin-top: 85px;
+
+      width: 40px;
+      height: 40px;
+
+      min-width: 40px;
+      min-height: 40px;
+
+      font-family: 'IBM Plex Mono', monospace;
+      text-align: center;
+      background-color: var(--kirschen);
+      border-radius: 10px;
+
+      box-shadow: 5px 5px var(--schatten);
+    }
+
+div.pos {
+
+  display:inline-block;
+
+  top: 65px;  
+    border-radius: 10px;
+    border:1px solid var(--grau);
+    border-style: dashed;
+    justify-content: center;
+    align-items: center;
+
+    width: 140px;
+    height: 210px;
+
+    min-width: 140px;
+    min-height: 210px;
+    
+    overflow: visible;
+    text-align: center;
+    vertical-align: middle;
+    font-size: xx-large;
+}
+
+.maincontainer{
+
+  top: 10px;
+
+  display: inline-flex;
+  position: relative;
+  width: 140px;
+  height: 210px;
+  border-radius: 10px;
+  border:1px solid var(--grau);
+  border-style: dashed;
+  justify-content: center;
+  align-items: center;
+  min-width: 170px;
+  
+}
+
+ .thefront{
+    display:inline-block;
+    top: 0;
+    left: 10px;
+    width: 140px;
+    height: 210px;
+    border-radius: 10px;
+    overflow: visible;
+
+    background: var(--gold);
+    color: black;
+    box-shadow: 10px 10px var(--schatten);
+    
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 240px;
+
+    margin: 0px;
+
+
+    font-size: xx-large;
+}
+
+.next {
+  display:inline-flex;
+}
+
+</style>
+
+<body onLoad="random()">
+  <div class=""> 
+  <nav class="">
+    <a href="/tictactoe" class="logo">Weiter zum Tic-Tac-Toe</a>
+    <a href="#" class="title">GameMonkey 🐒 </a>
+    <a href="/home" class="back">Zurück zur Hauptseite</a>
+  </nav>
+  </div><br><br>
+  <div class=""> 
+      <p class="thefront" id="Karte_1" draggable="true" ondragstart="drag(event)"></p> &nbsp &nbsp
+      <p class="thefront" id="Karte_2" draggable="true" ondragstart="drag(event)"></p> &nbsp &nbsp
+      <p class="thefront" id="Karte_3" draggable="true" ondragstart="drag(event)"></p> &nbsp &nbsp
+      <p class="thefront" id="Karte_4" draggable="true" ondragstart="drag(event)"></p>
+  </div>
+
+  <br><br><br><br><br>
+  <div class="next"> 
+
+  <strong><p id="opContainer_1" onclick="klammer(this)" class="mSymbol"></p></strong>
+  <div id="dragContainer_1" ondrop="drop(event)" class="pos con" ondragover="allowDrop(event)"></div>
+
+  <strong><p id="opContainer_2" onclick="symbol(this)" class="mSymbol"></p></strong>
+
+  <div id="dragContainer_2" ondrop="drop(event)" class="pos con" ondragover="allowDrop(event)"></div>
+
+  <strong><p id="opContainer_3" onclick="symbol(this)" class="mSymbol"></p></strong>
+
+  <div id="dragContainer_3" ondrop="drop(event)" class="pos con" ondragover="allowDrop(event)"></div>
+
+  <strong><p id="opContainer_4" onclick="symbol(this)" class="mSymbol"></p></strong>
+
+  <div id="dragContainer_4" ondrop="drop(event)" class="pos con" ondragover="allowDrop(event)"></div>
+  <strong><p id="opContainer_5" onclick="klammer(this)" class="mSymbol"></p></strong>
+
+  <strong><p class="twofour">=&nbsp24</p></strong>
+
+    <div id="stacker" ondrop="drop(event)" class="stacker con" ondragover="allowDrop(event)"></div>
+</div>
+<p class="bottom">Press 'R', to reload.</p>
+
+<script>
+
+  // Titel-Animation
+const tabTitle = document.getElementById("tab-title");
+let counter = 1;
+
+function animateTabTitle() {
+  const titles = ["Spieleseite", "Make24"]; // Array mit animierten Titeln
+  tabTitle.innerText = titles[counter % titles.length];
+  counter++;
+}
+
+setInterval(animateTabTitle, 1000); // Aktualisiere den Titel alle 1 Sekunde
+
+// Neuladen
+document.addEventListener("keydown", function(event) {
+    if (event.key === "r" || event.key === "R") {
+      location.reload();
+    }
+  }
+  );
+/*
+  // Neustart
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "z" || event.key === "Z") {
+      random();
+    }
+  }
+  );
+*/
+
+  // Variabel
+
+  var Zahl_1
+  var Zahl_2
+  var Zahl_3
+  var Zahl_4
+
+  var Operator_1
+  var Operator_2
+  var Operator_3
+  var Operator_4
+  var Operator_5
+
+  var formel
+  var ergebnis
+
+  // Drag & Drop
+
+  var originalPositions = {};
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+  
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+  
+  function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    var target = event.target;
+  
+    // Check if the drop zone is occupied
+    if (target.classList.contains('con') && target.children.length === 0) {
+      target.appendChild(document.getElementById(data));
+    }
+
+    cardNumber();
+
+  }
+
+  // Mathematische Symbole
+  function symbol(element) {
+    var text = element.innerHTML;
+    var newText;
+  
+    switch (text) {
+      case '':
+        newText = '+';
+        break;
+      case '+':
+        newText = '-';
+        break;
+      case '-':
+        newText = '*';
+        break;
+      case '*':
+        newText = '/';
+        break;
+
+      case '/':
+        newText = '(';
+        break;
+      case '(':
+        newText = '*(';
+        break;
+      case '*(':
+        newText = '+(';
+        break;
+      case '+(':
+        newText = '-(';
+        break;
+      case '-(':
+        newText = '/(';
+        break;
+
+      case '/(':
+        newText = ')*';
+        break;
+      case ')*':
+        newText = ')+';
+        break;
+      case ')+':
+        newText = ')-';
+        break;
+      case ')-':
+        newText = ')/';
+        break;
+      case ')/':
+        newText = '+';
+        break;
+    }
+    element.innerHTML = newText;
+    nodeOperator();
+  }
+
+  function klammer(element) {
+    var text = element.innerHTML;
+    var newText;
+  
+    switch (text) {
+      case '':
+        newText = '(';
+        break;
+        case '(':
+          newText = ')';
+          break;
+        case ')':
+          newText = '';
+          break;
+    }
+  
+    element.innerHTML = newText;
+    nodeOperator();
+  }
+  
+
+  // Zufällige Zahl
+  
+  function random(){
+    let array = [];
+    let h = 0;
+    while (h <= 3) {
+        let pot = String(Math.floor(Math.random() * 9)+1);
+        console.log(pot);
+        if(array.includes(pot)){
+            continue;
+        }
+        else{
+            array[h] = pot;
+            h++;
+        }
+    }
+    array.sort();
+    
+    document.getElementById("Karte_1").innerHTML = array[0];
+    document.getElementById("Karte_2").innerHTML = array[1];
+    document.getElementById("Karte_3").innerHTML = array[2];
+    document.getElementById("Karte_4").innerHTML = array[3];
+    console.log(array);
+}
+
+// Gewinnen
+
+
+// Zahl und Operatoren aus Pos Karten und Op Karten kriegen
+
+
+function cardNumber(){
+
+// Karte 1
+  var Karte_1 = document.getElementById("dragContainer_1");
+  Zahl_1 = Karte_1.querySelector("p").innerHTML;
+  console.log(Zahl_1); // Ausgabe: 1
+
+// Karte 2
+  var Karte_2 = document.getElementById("dragContainer_2");
+  Zahl_2 = Karte_2.querySelector("p").innerHTML;
+  console.log(Zahl_2); // Ausgabe: 1
+
+// Karte 3
+  var Karte_3 = document.getElementById("dragContainer_3");
+  Zahl_3 = Karte_3.querySelector("p").innerHTML;
+  console.log(Zahl_3); // Ausgabe: 1
+
+// Karte 4
+  var Karte_4 = document.getElementById("dragContainer_4");
+  Zahl_4 = Karte_4.querySelector("p").innerHTML;
+  console.log(Zahl_4); // Ausgabe: 1
+
+
+/* Stacker
+var stacker = document.getElementById("stacker");
+var stacker = stacker.querySelector("p").innerHTML;
+*/
+};
+
+function nodeOperator(){
+
+
+// Operator Paragraph 1
+ var Paragraph_1 = document.getElementById("opContainer_1");
+Operator_1 = opContainer_1.innerHTML.trim();
+ // console.log(Operator_1); // Ausgabe: +
+
+ // Operator Paragraph 2
+ var Paragraph_2 = document.getElementById("opContainer_2");
+Operator_2 = opContainer_2.innerHTML.trim();
+ //console.log(Operator_2); // Ausgabe: -
+
+ // Operator Paragraph 3
+ var Paragraph_3 = document.getElementById("opContainer_3");
+Operator_3 = opContainer_3.innerHTML.trim();
+ // console.log(Operator_1); // Ausgabe: +
+
+ // Operator Paragraph 4
+ var Paragraph_4 = document.getElementById("opContainer_4");
+Operator_4 = opContainer_4.innerHTML.trim();
+ // console.log(Operator_4); // Ausgabe: -
+
+  // Operator Paragraph 5
+  var Paragraph_5 = document.getElementById("opContainer_5");
+Operator_5 = opContainer_5.innerHTML.trim();
+  // console.log(Operator_5); // Ausgabe: -
+
+// GEWINNEN 
+
+  var formel = Operator_1 + " " + Zahl_1 + " " + Operator_2 + " " + Zahl_2 + " " + Operator_3 + " " + Zahl_3 + " " + Operator_4 + " " + Zahl_4 + " " + Operator_5;
+  var ergebnis = eval(formel);
+  console.log(Math.round(formel)); // Ausgabe: Operator_1 1 Operator_2 1 Operator_3 1 Operator_4 1 Operator_5
+  console.log(ergebnis); // Ausgabe: NaN (keine gültige Berechnung)
+
+  if (ergebnis == 24) {
+    location.reload();
+  }
+}
+
+</script>
+
+</body>
+</html>

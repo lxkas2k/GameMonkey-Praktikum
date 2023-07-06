@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tab-title">Coinflip</title>
+    <link rel="shortcut icon" type="ico" href="favicon.ico">
+</head>
+<body>
+
+<style>
+
+:root{
+  --background-color: #314453;
+  --darker-background-color: #243848;
+  --accent-color: #617484;
+  --text-color: #FFFFFF;
+  --navbar-height: 80px;
+
+  --schatten: rgb(0,0,0,0.7);
+  --button-color: #424ae0;
+}
+
+nav{
+  height: var(--navbar-height);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:99%;
+  margin:8px;
+}
+
+.logo {
+  color: white;
+  margin-left: 30px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.back {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+  padding: 32px;
+}
+
+.title:hover {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+body{
+    background-image: linear-gradient(-45deg, #314453, #617484, #a6c3cb, #E89B26);
+    background-size: 400% 400%;
+    height: 100vh;
+    overflow: hidden;
+    animation: gradient 10s ease infinite;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    color:antiquewhite;
+  }
+  
+  @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+    }
+  
+    #header {
+      height: 100vh;
+      width: 100vw;
+  }
+  
+.line{
+    border-style: dashed;
+    border-color: var(--button-color);
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.container{
+    background-color: #fffff1;
+    width: 400px;
+    height:600px;
+    padding: 20px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: 20px 20px 20px var(--schatten);
+    border-radius: 10px;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+}
+.stats{
+    display:inline-flex ;
+    /*text-align: right;*/
+    color: #101020;
+    font-weight: 500;
+    line-height: 25px;
+    gap:40px;
+    padding-bottom: 20px;
+}
+.coin{
+    height: 250px;
+    width: 250px;
+    position: relative;
+    margin: 50px auto;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+}
+.coin img{
+    width: 250px;
+}
+.heads,.tails{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+.tails{
+    transform: rotateY(180deg);
+}
+@keyframes spin-tails{
+    0%{
+        transform: rotateY(0);
+    }
+    100%{
+        transform: rotateY(1980deg);
+    }
+}
+@keyframes spin-heads{
+    0%{
+        transform: rotateY(0);
+    }
+    100%{
+        transform: rotateY(2160deg);
+    }
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    width: 120px;
+    padding: 10px 0;
+    border: 2.5px solid var(--button-color);
+    border-radius: 10px;
+    cursor: pointer;
+    /*box-shadow: 10px 10px var(--schatten);*/
+}
+#flip-button{
+    background-color: var(--button-color);
+    color: #ffffff;
+}
+
+#flip-button:hover{
+  background-color: slateblue;
+  color: #ffffff;
+}
+
+#flip-button:disabled{
+    background-color: #e1e0ee;
+    border-color: #e1e0ee;
+    color: #101020;
+}
+#reset-button{
+    background-color: #ffffff;
+    color: #424ae0;
+}
+
+p.reload {
+  font-family: 'IBM Plex Mono', monospace;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  color:black;
+}
+
+</style>
+
+    <nav>
+        <a href="/make24" class="logo">Weiter zum Make24</a>
+        <a href="#" class="title">GameMonkey 🐒 </a>
+        <a href="/home" class="back">Zurück zur Hauptseite</a>
+      </nav>
+
+    <div class="container">
+        <div class="stats">
+            <p id="heads-count">Heads: 0</p>
+            <p id="tails-count">Tails: 0</p>
+            <p id="highscore">Highscore: 0</p>
+        </div>
+        <div class="line">
+        <div class="coin" id="coin">
+            <div class="heads">
+                <img src="/images/heads">
+            </div>
+            <div class="tails">
+                <img src="/images/tails">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="flip-button">
+                Flip Coin
+            </button>
+            <button id="reset-button">
+                Reset
+            </button>
+        </div>
+    </div>
+</div>
+<p class="reload">Press 'R' to reload.</p>
+
+<script>
+  //Titel-Animation
+  const tabTitle = document.getElementById("tab-title");
+  let counter = 1;
+
+  function animateTabTitle() {
+    const titles = ["Spieleseite", "Coinflip"]; // Array mit animierten Titeln
+    tabTitle.innerText = titles[counter % titles.length];
+    counter++;
+  }
+
+  setInterval(animateTabTitle, 1000); // Aktualisiere den Titel alle 1 Sekunde
+
+  let heads = 0;
+  let tails = 0;
+  let highscore = 0; // Variable für den Highscore
+  let coin = document.querySelector(".coin");
+  let flipBtn = document.querySelector("#flip-button");
+  let resetBtn = document.querySelector("#reset-button");
+
+  flipBtn.addEventListener("click", () => {
+    let i = Math.floor(Math.random() * 2);
+    coin.style.animation = "none";
+    if (i) {
+      setTimeout(function () {
+        coin.style.animation = "spin-heads 3s forwards";
+      }, 100);
+      heads++;
+      tails = 0; // Zurücksetzen des Zählstands für Zahl
+    } else {
+      setTimeout(function () {
+        coin.style.animation = "spin-tails 3s forwards";
+      }, 100);
+      tails++;
+      heads = 0; // Zurücksetzen des Zählstands für Kopf
+    }
+    // Überprüfen und aktualisieren des Highscores
+    if (heads > highscore || tails > highscore) {
+      highscore = Math.max(heads, tails);
+      updateHighscore(highscore); // Funktion zum Aktualisieren des Highscores aufrufen
+    }
+    setTimeout(updateStats, 3000);
+    disableButton();
+  });
+
+  function updateStats() {
+    document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
+    document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
+    // Lese die scoreboard.json-Datei
+    fetch('/highscore')
+      .then(response => response.json())
+      .then(data => {
+        // Extrahiere den Wert des "highscore"
+        const highscore = data.highscore;
+
+        // Aktualisiere den HTML-Code mit dem Highscore-Wert
+        document.querySelector("#highscore").textContent = `Highscore: ${highscore}`;
+      })
+      .catch(error => {
+        console.error('Fehler beim Lesen der scoreboard.json-Datei:', error);
+      });
+  }
+
+  function disableButton() {
+    flipBtn.disabled = true;
+    setTimeout(function () {
+      flipBtn.disabled = false;
+    }, 3000);
+  }
+
+  resetBtn.addEventListener("click", () => {
+    coin.style.animation = "none";
+    heads = 0;
+    tails = 0;
+    updateStats();
+  });
+
+  // Funktion zum Aktualisieren des Highscores auf dem Server
+  function updateHighscore(score) {
+    fetch('/update-highscore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ highscore: score })
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Highscore erfolgreich aktualisiert.');
+        } else {
+          console.error('Fehler beim Aktualisieren des Highscores.');
+        }
+      })
+      .catch(error => {
+        console.error('Fehler beim Aktualisieren des Highscores:', error);
+      });
+  }
+
+  // Initialisieren des Highscores
+  updateStats();
+
+  // Event Listener für Tastendruck 'R' zum Zurücksetzen des Spielfelds
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'r' || event.key === 'R') {
+      coin.style.animation = "none";
+      heads = 0;
+      tails = 0;
+      updateStats();
+    }
+  });
+</script>
+
+
+</body>
+</html>

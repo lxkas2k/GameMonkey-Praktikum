@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tab-title">Website</title>
+    <link rel="shortcut icon" type="ico" href="favicon.ico">
+</head>
+<body>
+    
+<style>
+
+        body {
+    background-image: linear-gradient(-45deg, #314453, #617484, #a6c3cb, #E89B26);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@keyframes gradient {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+#header {
+    width: 100vw; 
+    height: 10vh;
+}
+
+:root{
+    --background-color: #314453;
+    --accent-color: #617484;
+    --text-color: #FFFFFF;
+    --navbar-height: 80px;
+}
+
+nav{
+    height: var(--navbar-height);
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav .logo{
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    font-variant: small-caps;
+    text-decoration: none;
+
+}
+nav ul{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+}
+nav li{
+    height: 100%;
+    width: 150px;
+    text-align: center;
+    position: relative;
+}
+nav li:hover{
+    background: var(--accent-color);
+}
+nav ul a{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+}
+.dropdown{
+    height: min-content;
+    width: 200px;
+    background: var(--background-color);
+
+    display: none;
+    flex-direction: column;
+    
+    position: absolute;
+    left: 0;
+    top: var(--navbar-height);   
+}
+.dropdown li{
+    height: 70px;
+    width: 100%;
+}
+.dropdown li a{
+    justify-content: flex-start;
+    padding-left: 30px;
+    width: calc(100% - 30px);
+}
+nav li:hover .dropdown{
+    display: flex;
+}
+nav input[type="checkbox"]{
+    display: none;
+}
+.expandable_li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.toggle_button{
+    width: 30px;
+    height: 23px;
+
+    position: absolute;
+    top: 25px;
+    right: 25px;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bar{
+    height: 4px;
+    width: 100%;
+    background: var(--text-color);
+    border-radius: 100px;
+}
+
+@media(max-width: 850px){
+    .toggle_button{
+        display: flex;
+    }
+    nav ul{
+        height: min-content;
+        width: 100%;
+        background-color: var(--background-color);
+
+        display: none;
+        position: absolute;
+        top: var(--navbar-height);
+    }
+    nav li{
+        height: min-content;
+        width: 100%;
+    }
+    nav ul a{
+        padding: 30px 0;
+    }
+    .expandable_li{
+        display: block;
+    }
+    .expandable_li label{
+        padding: 30px 0;
+        cursor: pointer;
+        display: block;
+    }
+    .expandable_li:hover .dropdown{
+        display: none;
+    }
+    .expandable_li input[type="checkbox"]:checked ~ .dropdown{
+        display: block;
+    }
+    .dropdown{
+        position: static;
+        width: 100%;
+    }
+    .dropdown li a{
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+    }
+    #toggle_button:checked ~ ul{
+        display: block;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.image {
+    position: relative;
+    height: 500px;
+    min-width: 1270px;
+    max-width: 1270px;
+}
+
+.image-border {
+    height: 530px;
+    box-shadow: 16px 14px 20px #0000008c;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1300px;
+    margin-left: 16vw;
+}
+
+.image-border2 {
+    height: 530px;
+    box-shadow: 16px 14px 20px #0000008c;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1300px;
+    margin-left: 16vw;
+}
+
+.image-border3 {
+    height: 530px;
+    box-shadow: 16px 14px 20px #0000008c;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1300px;
+    margin-left: 16vw;
+}
+
+.decoration { 
+    text-decoration: none;
+}
+
+.image-border::before{
+    content: "";
+    background-image: conic-gradient(
+        #FFECCC 20deg,
+        transparent 120deg
+    );
+    width: 500%;
+    height: 500%;
+    position: absolute;
+    animation: rotate 5s linear infinite;
+    border-width: auto;
+}
+
+.image-border2::before{
+    content: "";
+    background-image: conic-gradient(
+        #FFECCC 20deg,
+        transparent 120deg
+    );
+    width: 500%;
+    height: 500%;
+    position: absolute;
+    animation: rotate 5s linear infinite;
+}
+
+.image-border3::before{
+    content: "";
+    background-image: conic-gradient(
+        #FFECCC 20deg,
+        transparent 120deg
+    );
+    width: 500%;
+    height: 500%;
+    position: absolute;
+    animation: rotate 5s linear infinite;
+}
+
+.image__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.image__overlay {
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.image__overlay--blur {
+    backdrop-filter: blur(10px);
+}
+
+
+.image__overlay  > * {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.image__overlay:hover {
+    opacity: 1;
+}
+
+.image__overlay:hover > * {
+    transform: translateY(0px);
+}
+
+.image__title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.image__title2{
+    font-size: 60px;
+    font-weight: bold;
+
+}
+.image__title3{
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.image__decription {
+    font-size: 1.25em;
+
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+.color {
+    color:#D0F5FF;
+}
+
+.padding {
+    padding: 500px;
+}
+
+.header-image {
+    height: 800px;
+}
+
+.logo {
+    color: #ffffff;
+    padding: 32px;
+    font-size:large;
+}
+.logo:hover {
+    -webkit-animation: wavy 1s infinite  alternate;
+    animation: wavy 1s infinite  alternate;
+  }
+  @-webkit-keyframes wavy {
+    0% { transform: translateY(11px); }
+    100% { transform: translateY(-11px); }
+  }
+  @keyframes wavy {
+    0% { transform: translateY(11px); }
+    100% { transform: translateY(-11px); }
+  }
+
+  .Copyright{
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+       position: fixed;
+        margin-bottom: 25px;
+        background-size: 50px;
+        justify-content: center;
+  }
+
+</style>
+
+    <div id="header">
+        <nav>
+          <a href="#" class="logo">GameMonkey 🐒 </a>
+          <input type="checkbox" id="toggle_button">
+          <label for="toggle_button" class="toggle_button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </label>
+          <ul>
+                <li><a href="/home" class="color">Home</a></li>
+                <li><a href="/about" class="color">About</a></li>
+
+                <li class="expandable_li">
+                 <input type="checkbox" id="products_checkbox">
+                 <label for="products_checkbox" class="color">Spielauswahl</label>
+                  <ul class="dropdown">
+                    <li><a href="/tictactoe" class="color">TicTacToe</a></li>
+                    <li><a href="/make24" class="color">Make 24</a></li>
+                    <li><a href="/coinflip" class="color">Coinflip</a></li>
+                  </ul>
+              </li>
+
+                <li><a href="/login" class="color">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <br><br><br><br>
+    <div id="content-container">
+         <div class="image-border">
+            <div class="image">
+                 <img class="image__img" src="/images/tictactoe" alt="TicTacToe">
+                 <li class="image__overlay" id="tictactoe-container">
+                         <div class="image__title"><a class="padding"href="/tictactoe">Weiter zum TicTacToe</a></div>
+                    <p class="image__decription"></p>
+                </div>
+            </div>
+        <br><br><br><br><br>
+        <div class="image-border2">
+            <div class="image">
+                 <img class="image__img" src="/images/coinflip" alt="Coinflip">
+                 <div class="image__overlay">
+                    <div class="image__title2"><a class="padding"href="/coinflip" class=>Weiter zum Coinflip</a></div>
+                    <p class="image__decription"></p>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="image-border3">
+            <div class="image">
+                 <img class="image__img" src="/images/make24" alt="Make 24">
+                 <div class="image__overlay">
+                    <div class="image__title3"><a class="padding"href="/make24" class=>Weiter zum Make 24</a></div>
+                    <p class="image__decription"></p>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+
+    <h2 class="Copyright">&copy Created by Lukas & James.</h2>
+    
+<script>
+
+        const tabTitle = document.getElementById("tab-title");
+let counter = 1;
+
+function animateTabTitle() {
+  const titles = ["Spieleseite", "2023", "Login"]; // Array mit animierten Titeln
+  tabTitle.innerText = titles[counter % titles.length];
+  counter++;
+}
+
+setInterval(animateTabTitle, 1000); // Aktualisiere den Titel alle 1 Sekunde
+
+</script>
+
+</body>
+</html>

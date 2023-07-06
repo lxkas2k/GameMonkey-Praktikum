@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tab-title">Tic-Tac-Toe</title>
+    <link rel="shortcut icon" type="ico" href="favicon.ico">
+</head>
+<body> 
+
+<style>
+  
+    :root{
+  --background-color: #314453;
+  --accent-color: #617484;
+  --text-color: #FFFFFF;
+  --navbar-height: 80px;
+}
+
+nav{
+  height: var(--navbar-height);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo{
+  margin-left: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-variant: small-caps;
+  text-decoration: none;
+  color: white;
+}
+
+nav ul{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+nav li{
+  height: 100%;
+  width: 150px;
+  text-align: center;
+  position: relative;
+}
+nav li:hover{
+  background: var(--accent-color);
+}
+nav ul a{
+  height: 100%;
+  width: 100%;
+  color: var(--text-color);
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+}
+.dropdown{
+  height: min-content;
+  width: 200px;
+  background: var(--background-color);
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: var(--navbar-height);   
+  padding: 10px;
+  font-size: 20px;
+}
+.dropdown li{
+  height: 70px;
+  width: 100%;
+}
+.dropdown li a{
+  justify-content: flex-start;
+  padding-left: 30px;
+  width: calc(100% - 30px);
+}
+nav li:hover .dropdown{
+  display: flex;
+}
+nav input[type="checkbox"]{
+  display: none;
+}
+.expandable_li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toggle_button{
+  width: 30px;
+  height: 23px;
+
+  position: absolute;
+  top: 25px;
+  right: 25px;
+
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bar{
+  height: 4px;
+  width: 100%;
+  background: var(--text-color);
+  border-radius: 100px;
+}
+
+@media(max-width: 850px){
+  .toggle_button{
+      display: flex;
+  }
+  nav ul{
+      height: min-content;
+      width: 100%;
+      background-color: var(--background-color);
+
+      display: none;
+      position: absolute;
+      top: var(--navbar-height);
+  }
+  nav li{
+      height: min-content;
+      width: 100%;
+  }
+  nav ul a{
+      padding: 30px 0;
+  }
+  .expandable_li{
+      display: block;
+  }
+  .expandable_li label{
+     font-size: 110px;
+      padding: 30px 0;
+      cursor: pointer;
+      display: block;
+  }
+  .expandable_li:hover .dropdown{
+      display: none;
+  }
+  .expandable_li input[type="checkbox"]:checked ~ .dropdown{
+      display: block;
+  }
+  .dropdown{
+      position: static;
+      width: 100%;
+  }
+  .dropdown li a{
+      width: 100%;
+      padding: 0;
+      justify-content: center;
+  }
+  #toggle_button:checked ~ ul{
+      display: block;
+  }
+}
+
+.logo2 {
+  margin-left: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 45px;
+  font-variant: small-caps;
+  text-decoration: none;
+  color: white;
+  margin-left: 100px;
+}
+
+.back {
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+  padding: 32px;
+}
+
+.title:hover {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  margin-right: -7px;
+  margin-top: -2px;
+
+  border-style: solid;
+  border-width:thin;
+
+  width: 50px;
+  height: 50px;
+}
+button:hover{
+  background-color: #238c30; /* Green */
+}
+
+p#currentP{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 150%;
+}
+p.reload {
+  font-family: 'IBM Plex Mono', monospace;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+body {
+
+  /*Background v*/
+
+    background-image: linear-gradient(-45deg, #314453, #617484, #a6c3cb, #E89B26); 
+    background-size: 400% 2000%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+/*Background ^*/
+
+h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  display: inline-block;
+  padding: 10px;
+}
+
+/* Text-Wavy */
+
+.wavy_0 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_1 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 0.5s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_2 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 1s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.wavy_3 {
+  -webkit-animation: wavy 1s infinite  alternate;
+  animation: wavy 1s infinite  alternate;
+  animation-delay: 1.5s;
+}
+@-webkit-keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+@keyframes wavy {
+  0% { transform: translateY(11px); }
+  100% { transform: translateY(-11px); }
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.line{
+  border-style: dashed;
+  border-color: var(--button-color);
+  border-radius: 10px;
+  padding: 40px;
+}
+
+.container{
+  background-color: #fffff1;
+  width: 600px;
+  padding: 20px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  box-shadow: 20px 20px var(--schatten);
+  border-radius: 10px;
+  -webkit-perspective: 300px;
+  perspective: 300px;
+}
+
+.color {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-variant: small-caps;
+  text-decoration: none;
+  color: white;
+}
+
+</style>
+
+  <nav>
+    <a href="/coinflip" class="logo">Weiter zum Coinflip</a>
+    <a href="#" class="logo2">GameMonkey 🐒 </a>
+    <input type="checkbox" id="toggle_button">
+    <label for="toggle_button" class="toggle_button">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+    <ul>
+          <li class="expandable_li">
+           <input type="checkbox" id="products_checkbox">
+           <label for="products_checkbox" class="color">Modus</label>
+            <ul class="dropdown">
+              <li><a href="/tictactoe" >TicTacToe 3x3</a></li>
+              <li><a href="/tictactoe4" >TicTacToe 4x4</a></li>
+              <li><a href="/tictactoe5" >TicTacToe 5x5</a></li>
+            </ul>
+        </li>
+
+          <li><a href="/home" class="color">Zurück zur Hauptseite</a></li>
+      </ul>
+  </nav>
+
+        <div class="container">
+          <div class="line">
+
+        <div class="centered">
+    <h2 class="wavy_0">T</h2>
+    <h2 class="wavy_1">i</h2>
+    <h2 class="wavy_2">c</h2>
+    <h2 class="wavy_3">-</h2>
+    <h2 class="wavy_0">T</h2>
+    <h2 class="wavy_1">a</h2>
+    <h2 class="wavy_2">c</h2>
+    <h2 class="wavy_3">-</h2>
+    <h2 class="wavy_0">T</h2>
+    <h2 class="wavy_1">o</h2>
+    <h2 class="wavy_2">e</h2>
+  </div>
+<br>
+<br><br>
+<div class="centered">
+<button type="button" id="Feld_0">#</button>
+<button type="button" id="Feld_1">#</button>
+<button type="button" id="Feld_2">#</button>
+<button type="button" id="Feld_3">#</button>
+<button type="button" id="Feld_4">#</button><br>
+<button type="button" id="Feld_5">#</button>
+<button type="button" id="Feld_6">#</button>
+<button type="button" id="Feld_7">#</button>
+<button type="button" id="Feld_8">#</button>
+<button type="button" id="Feld_9">#</button><br>
+<button type="button" id="Feld_10">#</button>
+<button type="button" id="Feld_11">#</button>
+<button type="button" id="Feld_12">#</button>
+<button type="button" id="Feld_13">#</button>
+<button type="button" id="Feld_14">#</button><br>
+<button type="button" id="Feld_15">#</button>
+<button type="button" id="Feld_16">#</button>
+<button type="button" id="Feld_17">#</button>
+<button type="button" id="Feld_18">#</button>
+<button type="button" id="Feld_19">#</button><br>
+<button type="button" id="Feld_20">#</button>
+<button type="button" id="Feld_21">#</button>
+<button type="button" id="Feld_22">#</button>
+<button type="button" id="Feld_23">#</button>
+<button type="button" id="Feld_24">#</button><br>
+</div>
+<br><br>
+<div class="centered">
+<p id="currentP" class="red"><strong>Spieler 'O' ist dran</strong></p>
+</div>
+</div>
+</div>
+<p class="reload">Press 'R' to reload.</p>
+
+<script>
+
+  //Titel Animation
+const tabTitle = document.getElementById("tab-title");
+let counter = 1;
+
+function animateTabTitle() {
+  const titles = ["Spieleseite", "TicTacToe", "5x5 Feld"]; // Array mit animierten Titeln
+  tabTitle.innerText = titles[counter % titles.length];
+  counter++;
+}
+
+setInterval(animateTabTitle, 1000); // Aktualisiere den Titel alle 1 Sekunde
+
+// Variable zur Verfolgung des aktuellen Spielers
+let currentPlayer = 'O';
+
+// Array zur Verfolgung des Spielfelds
+const board = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'];
+
+// Array mit möglichen Gewinnkombinationen
+const winningCombinations = [
+  [0, 1, 2, 3, 4],          // Horizontale Reihen
+  [5, 6, 7, 8, 9],
+  [10, 11, 12, 13, 14],
+  [15, 16, 17, 18, 19],
+  [20, 21, 22, 23, 24],
+  [0, 5, 10, 15, 20],       // Vertikale Reihen
+  [1, 6, 11, 16, 21],
+  [2, 7, 12, 17, 22],
+  [3, 8, 13, 18, 23],
+  [4, 9, 14, 19, 24],
+  [0, 6, 12, 18, 24],       // Diagonale Reihen
+  [4, 8, 12, 16, 20]
+];
+
+
+// Funktion zum Aktualisieren des Spielfelds und Überprüfen auf Gewinner
+function updateBoard(cellIndex) {
+  if (board[cellIndex] === '#') {
+    board[cellIndex] = currentPlayer;
+    document.getElementById(`Feld_${cellIndex}`).innerText = currentPlayer;
+    
+    // Überprüfung auf Gewinner
+    if (checkWinner(currentPlayer)) {
+      alert(`Spieler '${currentPlayer}' hat gewonnen!`);
+      resetBoard();
+    } else if (board.indexOf('#') === -1) {
+      alert("Unentschieden!");
+      resetBoard();
+    } else {
+      // Spieler wechseln
+      currentPlayer = currentPlayer === 'O' ? 'X' : 'O';
+      var currentP = document.getElementById('currentP');
+      currentP.innerHTML = `<strong>Spieler '${currentPlayer}' ist dran</strong>`;
+      
+      if (currentP.classList.contains("blue")) {
+        currentP.classList.remove("blue");
+        currentP.classList.add("red");
+      } else {
+        currentP.classList.remove("red");
+        currentP.classList.add("blue");
+      }
+    }
+  }
+}
+
+// Funktion zur Überprüfung auf Gewinner
+function checkWinner(player) {
+  for (let combination of winningCombinations) {
+    if (
+      board[combination[0]] === player &&
+      board[combination[1]] === player &&
+      board[combination[2]] === player &&
+      board[combination[3]] === player &&
+      board[combination[4]] === player
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Funktion zum Zurücksetzen des Spielfelds
+function resetBoard() {
+  board.fill('#');
+  for (let i = 0; i < 25; i++) {
+    document.getElementById(`Feld_${i}`).innerText = '#';
+  }
+  currentPlayer = 'O';
+  document.getElementById('currentP').innerHTML = `<strong>Spieler '${currentPlayer}' ist dran</strong>`;
+}
+
+// Event Listener für Klicks auf die Spielfeldzellen
+for (let i = 0; i < 25; i++) {
+  document.getElementById(`Feld_${i}`).addEventListener('click', function() {
+    updateBoard(i);
+  });
+}
+
+// Event Listener für Tastendruck 'R' zum Zurücksetzen des Spielfelds
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'r' || event.key === 'R') {
+    resetBoard();
+  }
+});
+
+</script>
+
+</body>
+</html>

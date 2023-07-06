@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title id="tab-title">Website</title>
+    <script src="script.js"></script>
+    <link rel="shortcut icon" type="ico" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+<style>
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(-45deg, #314453, #617484, #a6c3cb, #E89B26);
+  background-size: 400% 400%;
+  height: 100vh;
+  overflow: hidden;
+  animation: gradient 10s ease infinite;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+  }
+
+  #header {
+    width: 100vw; 
+    height: 10vh;
+}
+
+:root{
+    --background-color: #314453;
+    --accent-color: #617484;
+    --text-color: #FFFFFF;
+    --navbar-height: 80px;
+}
+
+nav{
+    height: var(--navbar-height);
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav .logo{
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    font-variant: small-caps;
+    text-decoration: none;
+    color: white;
+}
+
+.color:hover {
+        -webkit-animation: wavy 1s infinite  alternate;
+        animation: wavy 1s infinite  alternate;
+      }
+      @-webkit-keyframes wavy {
+        0% { transform: translateY(11px); }
+        100% { transform: translateY(-11px); }
+      }
+      @keyframes wavy {
+        0% { transform: translateY(11px); }
+        100% { transform: translateY(-11px); }
+}
+nav ul{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+}
+nav li{
+    height: 100%;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+}
+nav li:hover{
+    background: var(--accent-color);
+}
+nav ul a{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	text-decoration: none;
+}
+.dropdown{
+    height: min-content;
+    width: 200px;
+    background: var(--background-color);
+
+    display: none;
+    flex-direction: column;
+    
+    position: absolute;
+    left: 0;
+    top: var(--navbar-height);   
+}
+.dropdown li{
+    height: 70px;
+    width: 100%;
+}
+.dropdown li a{
+    justify-content: flex-start;
+    padding-left: 30px;
+    width: calc(100% - 30px);
+}
+nav li:hover .dropdown{
+    display: flex;
+}
+nav input[type="checkbox"]{
+    display: none;
+}
+.expandable_li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.toggle_button{
+    width: 30px;
+    height: 23px;
+
+    position: absolute;
+    top: 25px;
+    right: 25px;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bar{
+    height: 4px;
+    width: 100%;
+    background: var(--text-color);
+    border-radius: 100px;
+}
+
+@media(max-width: 850px){
+    .toggle_button{
+        display: flex;
+    }
+    nav ul{
+        height: min-content;
+        width: 100%;
+        background-color: var(--background-color);
+
+        display: none;
+        position: absolute;
+        top: var(--navbar-height);
+    }
+    nav li{
+        height: min-content;
+        width: 100%;
+    }
+    nav ul a{
+        padding: 30px 0;
+    }
+    .dropdown{
+        position: static;
+        width: 100%;
+    }
+    .dropdown li a{
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+    }
+    #toggle_button:checked ~ ul{
+        display: block;
+    }
+}
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 550px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+}
+.center h1{
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid silver;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 50px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+}
+input[type="submit"]{
+  width: 100%;
+  height: 45px;
+  border: 1px solid;
+  background: #FFECCC;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #000000;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 70px;
+}
+input[type="submit"]:hover{
+  border-color: #2691d9;
+  transition: .5s;
+}
+.signup_link{
+  margin: -6% 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.signup_link a{
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup_link a:hover{
+  text-decoration: underline;
+}
+
+.color {
+  color: white;
+}
+
+.eye {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  left: 340px;
+  top: 10px;
+  position: absolute;
+}
+
+</style>
+
+    <div id="header">
+      <nav>
+        <a href="#" class="logo">GameMonkey 🐒 </a>
+        <label for="toggle_button" class="toggle_button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </label>
+        <ul>
+               <li><a href="file:///C:/Users/praktikant2/Desktop/Projekt/Website/Website.html" class="color">Zurück zur Hauptseite</a></li>
+        </ul>
+      </nav>
+  </div>
+
+  <div class="center">
+    <h1>Register</h1>
+    <form action="/register" method="post"> <!-- Updated action and method attributes -->
+      <div class="txt_field">
+        <input type="text" name="username" required> <!-- Added name attribute for username field -->
+        <span></span>
+        <label>Benutzername eingeben:</label>
+      </div>
+      <div class="txt_field">
+        <input type="password" id="password_1" name="password" required> <!-- Added name attribute for password field -->
+        <span></span>
+        <label>Passwort eingeben:</label>
+        <img class="eye" onclick="togglePasswordVisibility()" src="/images/eye" id="eyeicon">
+      </div>
+      <div class="txt_field">
+        <input minlength="4" type="password" id="password_2" required>
+        <span></span>
+        <label>Passwort erneut eingeben:</label>
+      </div>
+      <input minlength="4" type="submit" value="Registrieren">
+  
+      <div class="signup_link">
+        Bereits registriert? <a href="/login">Anmelden</a>
+      </div>
+    </form>
+  </div>
+  
+
+<script>
+
+function togglePasswordVisibility() {
+    var passwordInput1 = document.getElementById("password_1");
+    var passwordInput2 = document.getElementById("password_2");
+    var eyeIcon = document.getElementById("eyeicon");
+  
+    if (passwordInput1.type === "password") {
+      passwordInput1.type = "text";
+      passwordInput2.type = "text";
+      eyeIcon.src = "/images/eye-slash"; // Bild für den sichtbaren Text
+    } else {
+      passwordInput1.type = "password";
+      passwordInput2.type = "password";
+      eyeIcon.src = "/images/eye"; // Bild für das Passwort
+    }
+  }
+  
+
+</script>
+
+  </body>
+</html>
